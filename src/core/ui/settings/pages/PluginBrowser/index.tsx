@@ -1,3 +1,4 @@
+// Not really used in main Vencore builds!
 import { deleteRepository, installPlugin, isCorePlugin, isPluginInstalled, pluginRepositories, registeredPlugins, uninstallPlugin, updateAllRepository, updateRepository } from "@lib/addons/plugins";
 import { BunnyPluginManifestInternal } from "@lib/addons/plugins/types";
 import { findAssetId } from "@lib/api/assets";
