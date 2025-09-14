@@ -1,79 +1,43 @@
-<p align="center">
-  <picture>
-    <source
-      width="512px"
-      media="(prefers-color-scheme: dark)"
-      srcset="assets/wordmark/wordmark+slogan-dark.svg"
-    >
-    <img
-      width="512px"
-      src="assets/wordmark/wordmark+slogan-light.svg"
-    >
-  </picture>
-  <br>
-  <a href="https://revenge-mod.github.io/">
-       <picture>
-           <source height="32px" media="(prefers-color-scheme: dark)" srcset="assets/logo/logo-dark.svg" />
-           <img height="32px" src="assets/logo/logo-light.svg" />
-       </picture>
-   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <a href="https://discord.com/invite/ddcQf3s2Uq">
-       <picture>
-           <source height="32px" media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/13122796/178032563-d4e084b7-244e-4358-af50-26bde6dd4996.png" />
-           <img height="32px" src="https://user-images.githubusercontent.com/13122796/178032563-d4e084b7-244e-4358-af50-26bde6dd4996.png" />
-       </picture>
-   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <a href="https://github.com/revenge-mod">
-       <picture>
-           <source height="32px" media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/dMMmCrW/Git-Hub-Mark.png" />
-           <img height="32px" src="https://i.ibb.co/9wV3HGF/Git-Hub-Mark-Light.png" />
-       </picture>
-   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+# Vencore Mobile 
 
-   </a>
-</p>
 
-# 👊 Revenge
-
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/revenge-mod/revenge-bundle/release.yml)
-[![3-Clause BSD License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-
-A client modification for Discord mobile, a continuation of [Bunny](https://github.com/pyoncord/Bunny).
+A client for Discord mobile, a continuation (and fork) of [Revenge Classic](https://github.com/revenge-mod/revenge-bundle).
 
 ## 💪 Features
 
 - **🔌 Plugins**: Extend Discord with custom features
 - **🎨 Themes & Fonts**: Customize Discord's appearance to your liking
-- **🧪 Experiments**: Try out Discord's new features before they're rolled out
+- **🧪 Experiments**: Try out Discord's new features before they're rolled out 
+- **🔌 Built in Plugin Browaer**: The easiest way to install custom plugins into your client
+- **🌐 Vencore Proxy**: The first ever Proxy Service for discord mobile - bypass geographic restrictions and unlock full potential of Discord
 
 ## ⬇️ Download
 
-This repository releases JavaScript bundles for loaders to execute. These are the official Revenge loaders:
+This repository releases JavaScript bundles for loaders to execute. These are the official Vencore loaders:
 
 ### Android
 
-- **🩹 Root with Xposed**: [RevengeXposed](https://github.com/revenge-mod/revenge-xposed/releases/latest)
-- **📵 Non-root**: [Revenge Manager](https://github.com/revenge-mod/revenge-manager/releases/latest)
+You can install Vencore in 3 ways:
 
-### iOS
+- **🐧 Root with Xposed**: [VencoreXposed](https://github.com/ApexTeamPL/venmobile-xposed/releases/latest)
+- **📱 Non-root**: [Vencore Manager](https://github.com/ApexTeamPL/venmobile-manager/releases/latest)
+- **📲 Other clients**: Vencore can run on top of other clients: Kettu and Revenge. Enable Developer Options and load [Vencore bundle](https://github.com/ApexTeamPL/venmobile-bundle/releases/download/latest/vencore.js)
 
-- [**RevengeTweak**](https://github.com/revenge-mod/revenge-tweak): Prebuilt rootful and rootless `.deb` files or the prepatched `.ipa`
+### 🍎 iOS
+
+- 
+**NOTE: We do NOT support Vencore IOS as our own app. Once we get enough testers, I will fork the BTLoader and edit it to load Vencore by default. But for now - use BTLoader and follow the instructions written above for other clients.**
 
 ## 📚 Everything else
 
-### 📙 Contributing
-
-Thank you for considering contributing to Revenge.
-You can find the contribution guidelines [here](CONTRIBUTING.md).
-
 ### 🛠️ Building
 
-To build Revenge bundle, you can follow the [documentation](/docs).
+To build Vencore yourself, you can follow the [documentation](/docs).
 
 ### 📃 Documentation
 
-You can find the documentation of Revenge bundle [here](/docs).
+You can find the documentation of Vencore bundle [here](/docs).
 
 ## 📜 Licence
 
-Revenge bundle is licensed under the 3-Clause BSD license. Please see the [license file](LICENSE) for more information.
+Vencore Mobile bundle is licensed under the 3-Clause BSD license. Please see the [license file](LICENSE) for more information.
