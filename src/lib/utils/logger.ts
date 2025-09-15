@@ -12,4 +12,4 @@ export interface Logger {
 }
 
 export const LoggerClass = findByNameLazy("Logger");
-export const logger: Logger = new LoggerClass("Revenge");
+export const logger: Logger = new LoggerClass("Vencore");

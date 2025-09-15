@@ -1,4 +1,7 @@
 import { PluginInstanceInternal } from "@lib/addons/plugins/types";
+import quickinstall from "./quickinstall";
+import badges from "./badges";
+import pluginsList from "./plugins-list";
 
 interface CorePlugin {
     default: PluginInstanceInternal;
@@ -7,8 +10,18 @@ interface CorePlugin {
 
 // Called from @lib/plugins
 export const getCorePlugins = (): Record<string, CorePlugin> => ({
-    "bunny.quickinstall": require("./quickinstall"),
-    "bunny.badges": require("./badges")
+    "bunny.quickinstall": {
+        default: quickinstall,
+        preenabled: true
+    },
+    "bunny.badges": {
+        default: badges,
+        preenabled: true
+    },
+    "bunny.plugins-list": {
+        default: pluginsList,
+        preenabled: true
+    }
 });
 
 /**
