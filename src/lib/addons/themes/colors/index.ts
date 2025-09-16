@@ -1,4 +1,4 @@
-
+import fixStatusBar from "./fix";
 import patchChatBackground from "./patches/background";
 import patchDefinitionAndResolver from "./patches/resolver";
 import patchStorage from "./patches/storage";
