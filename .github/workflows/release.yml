@@ -6,7 +6,7 @@ on:
 jobs:
     release:
         name: Release
-        runs-on: ubuntu-latest
+        runs-on: [self-hosted, ubuntu-venbuilder]
         permissions:
             contents: write
 
