@@ -1,0 +1,48 @@
+name: Release
+on:
+    push:
+        branches: [main, dev]
+
+jobs:
+    release:
+        name: Release
+        runs-on: [self-hosted, ubuntu-venbuilder]
+        permissions:
+            contents: write
+
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+
+          - name: Checkout builds
+            uses: actions/checkout@v4
+            
+          - name: Restore Bun cache
+            uses: actions/cache@v4
+            with:
+              path: ~/.bun/install/cache
+              key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+              restore-keys: |
+                ${{ runner.os }}-bun-
+              
+          - name: Setup Bun
+            uses: oven-sh/setup-bun@v2
+            with:
+              bun-version: latest
+
+          - name: Install dependencies
+            run: bun install --frozen-lockfile
+
+          - name: Build
+            run: bun run build --release-branch=${{ github.ref_name }}
+
+          - name: Push builds
+            run: |
+                rm $GITHUB_WORKSPACE/builds/* || true
+                cp -r dist/* $GITHUB_WORKSPACE/builds || true
+                cd $GITHUB_WORKSPACE/builds
+                git config --local user.email "actions@github.com"
+                git config --local user.name "GitHub Actions"
+                git add .
+                git commit -m "Build $GITHUB_SHA" || exit 0
+                git push
