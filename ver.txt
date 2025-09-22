@@ -1,0 +1,1 @@
+trailing={<TableRow.TrailingText text={`1.3.0 ${debugInfo.bunny.version}`} />}
