@@ -1,7 +1,4 @@
 name: Release
-on:
-    push:
-        branches: [main, dev]
 
 jobs:
     release:
