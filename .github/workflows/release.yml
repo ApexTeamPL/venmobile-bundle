@@ -38,7 +38,7 @@ jobs:
 
           - name: Push builds
             run: |
-                mkdir $GITHUM_WORKSPACE/builds
+                mkdir $GITHUB_WORKSPACE/builds
                 rm $GITHUB_WORKSPACE/builds/* || true
                 cp -r dist/* $GITHUB_WORKSPACE/builds || true
                 cd $GITHUB_WORKSPACE/builds
