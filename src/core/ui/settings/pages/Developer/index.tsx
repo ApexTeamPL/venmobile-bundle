@@ -102,7 +102,7 @@ export default function Developer() {
                         <TableRow
                             label={Strings.CLEAR_BUNDLE}
                             subLabel={Strings.CLEAR_BUNDLE_DESC}
-                            icon={<TableRow.Icon source={findAssetId("trash")} />}
+                            icon={<TableRow.Icon source={findAssetId("TrashIcon")} />}
                             onPress={() => {
                                 openAlert("revenge-clear-bundle-reload-confirmation", <AlertModal
                                     title={Strings.MODAL_RELOAD_REQUIRED}
