@@ -107,13 +107,15 @@ const PluginCard = React.memo(
     const [installed, setInstalled] = React.useState(() =>
       Boolean(VdPluginManager.plugins[normId]),
     );
+    const [isInstalling, setIsInstalling] = React.useState(false);
 
     React.useEffect(() => {
       setInstalled(Boolean(VdPluginManager.plugins[normId]));
     }, [normId, setRefreshTick]);
 
     const installPlugin = async () => {
-      if (installing.has(normId)) return;
+      if (isInstalling) return;
+      setIsInstalling(true);
       setInstalling((prev) => new Set(prev).add(normId));
       try {
         await VdPluginManager.installPlugin(normId, true);
@@ -125,6 +127,7 @@ const PluginCard = React.memo(
           findAssetId("CircleXIcon-primary"),
         );
       } finally {
+        setIsInstalling(false);
         setInstalling((prev) => {
           const s = new Set(prev);
           s.delete(normId);
@@ -257,7 +260,7 @@ const PluginCard = React.memo(
             openAlert(
               "plugin-warning",
               <AlertModal
-                title={`${isError ? "❌" : "⚠️"} ${isError ? "Error Details" : "Warning Details"}`}
+                title="Plugin Warning"
                 content={
                   <View style={{ gap: 12 }}>
                     <Text
@@ -265,25 +268,68 @@ const PluginCard = React.memo(
                       style={{ textAlign: "center" }}
                     >
                       {isError
-                        ? "This plugin has reported the following error:"
-                        : "This plugin has the following warning:"}
+                        ? "This plugin is marked as broken and may not work properly."
+                        : "This plugin may not work properly."}
                     </Text>
                     <View
                       style={{
                         padding: 12,
-                        backgroundColor: isError
-                          ? "rgba(239, 68, 68, 0.1)"
-                          : "rgba(245, 158, 11, 0.1)",
+                        backgroundColor: "rgba(128, 128, 128, 0.1)",
                         borderRadius: 8,
-                        borderLeftWidth: 4,
-                        borderLeftColor: isError ? "#EF4444" : "#F59E0B",
+                        borderLeftWidth: 3,
+                        borderLeftColor: "#6B7280",
                       }}
                     >
-                      <Text
-                        variant="text-sm/medium"
-                        style={{ color: isError ? "#EF4444" : "#F59E0B" }}
-                      >
+                      <Text variant="text-sm/medium" color="text-normal">
                         {plugin.warningMessage}
+                      </Text>
+                    </View>
+                  </View>
+                }
+                actions={
+                  <AlertActions>
+                    <AlertActionButton
+                      text="Got it"
+                      variant="secondary"
+                      onPress={() => dismissAlert("plugin-warning")}
+                    />
+                  </AlertActions>
+                }
+              />,
+            );
+          },
+        });
+      }
+
+      // Add warning popup for broken plugins without warning message
+      if (plugin.status === "broken" && !plugin.warningMessage) {
+        actions.push({
+          label: "Show Error Details",
+          icon: findAssetId("CircleXIcon-primary"),
+          onPress: () => {
+            openAlert(
+              "plugin-warning",
+              <AlertModal
+                title="Plugin Warning"
+                content={
+                  <View style={{ gap: 12 }}>
+                    <Text
+                      variant="text-md/medium"
+                      style={{ textAlign: "center" }}
+                    >
+                      This plugin is marked as broken and may not work properly.
+                    </Text>
+                    <View
+                      style={{
+                        padding: 12,
+                        backgroundColor: "rgba(128, 128, 128, 0.1)",
+                        borderRadius: 8,
+                        borderLeftWidth: 3,
+                        borderLeftColor: "#6B7280",
+                      }}
+                    >
+                      <Text variant="text-sm/medium" color="text-normal">
+                        This plugin is marked as BROKEN by the repository.
                       </Text>
                     </View>
                   </View>
@@ -401,15 +447,16 @@ const PluginCard = React.memo(
                   <Button
                     size="sm"
                     variant="primary"
-                    text="Install"
+                    text={isInstalling ? "Installing..." : "Install"}
                     icon={findAssetId("DownloadIcon")}
-                    disabled={installing.has(normId)}
+                    disabled={isInstalling}
                     onPress={promptInstall}
                   />
                 ) : (
-                  <IconButton
+                  <Button
                     size="sm"
                     variant="destructive"
+                    text="Uninstall"
                     icon={findAssetId("TrashIcon")}
                     onPress={uninstallPlugin}
                   />
