@@ -14,7 +14,7 @@ export default function About() {
     const versions = [
         {
             label: Strings.BUNNY,
-            version: debugInfo.bunny.version,
+            version: `1.3.2 ${debugInfo.bunny.version}`,
             icon: { uri: PyoncordIcon },
         },
         {
@@ -63,18 +63,13 @@ export default function About() {
         {
             label: Strings.BRAND,
             version: debugInfo.device.brand,
-            icon: "SparklesIcon"
+            icon: "MagicWandIcon"
         },
         {
             label: Strings.MODEL,
             version: debugInfo.device.model,
             icon: "MobilePhoneIcon"
         },
-        {
-            label: Platform.select({ android: Strings.CODENAME, ios: Strings.MACHINE_ID })!,
-            version: debugInfo.device.codename,
-            icon: "TagIcon"
-        }
     ];
 
     return (
