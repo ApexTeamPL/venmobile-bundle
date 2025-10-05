@@ -160,7 +160,7 @@ const PluginCard = React.memo(
         if (plugin.status === "broken")
           lines.push("This plugin is marked as BROKEN by the repository.");
         else if (plugin.status === "warning")
-          lines.push("This plugin may have issues on mobile.");
+          lines.push("This plugin may not work properly.");
         else lines.push(`Status: ${plugin.status}`);
       }
       if (plugin.warningMessage) lines.push(plugin.warningMessage);
@@ -336,7 +336,7 @@ const PluginCard = React.memo(
     } else if (plugin.status === "warning") {
       statusColor = "#F59E0B";
       statusMessage =
-        plugin.warningMessage || "This plugin may have issues on mobile";
+        plugin.warningMessage || "This plugin may not work properly.";
     }
 
     return (
@@ -398,9 +398,10 @@ const PluginCard = React.memo(
                 style={{ alignItems: "center" }}
               >
                 {!installed ? (
-                  <IconButton
+                  <Button
                     size="sm"
                     variant="primary"
+                    text="Install"
                     icon={findAssetId("DownloadIcon")}
                     disabled={installing.has(normId)}
                     onPress={promptInstall}
