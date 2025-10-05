@@ -22,7 +22,7 @@ export default function patchSettings(): () => void {
     title: () => "Plugin Browser",
     icon: findAssetId("ActivitiesIcon"),
     IconComponent: () => (
-      <TableRow.Icon source={findAssetId("ic_arrow_down")} />
+      <TableRow.Icon source={findAssetId("ic_download_24px")} />
     ),
     usePredicate: () => true,
     onPress: wrapOnPress(

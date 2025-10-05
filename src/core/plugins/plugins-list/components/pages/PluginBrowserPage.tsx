@@ -168,33 +168,29 @@ const PluginCard = React.memo(
       openAlert(
         "plugins-list-install-warning",
         <AlertModal
-          title="⚠️ Plugin Warning"
+          title="Plugin Warning"
           content={
             <View style={{ gap: 12 }}>
               <Text variant="text-md/medium" style={{ textAlign: "center" }}>
                 {plugin.status === "broken"
                   ? "This plugin is marked as broken and may not work properly."
-                  : "This plugin may have issues on mobile devices."}
+                  : "This plugin may not work properly."}
               </Text>
               <View
                 style={{
                   padding: 12,
-                  backgroundColor:
-                    plugin.status === "broken"
-                      ? "rgba(239, 68, 68, 0.1)"
-                      : "rgba(245, 158, 11, 0.1)",
+                  backgroundColor: "rgba(128, 128, 128, 0.1)",
                   borderRadius: 8,
-                  borderLeftWidth: 4,
-                  borderLeftColor:
-                    plugin.status === "broken" ? "#EF4444" : "#F59E0B",
+                  borderLeftWidth: 3,
+                  borderLeftColor: "#6B7280",
                 }}
               >
                 {lines.map((line, index) => (
                   <Text
                     key={index}
                     variant="text-sm/medium"
+                    color="text-normal"
                     style={{
-                      color: plugin.status === "broken" ? "#EF4444" : "#F59E0B",
                       marginBottom: index < lines.length - 1 ? 8 : 0,
                     }}
                   >
@@ -210,7 +206,7 @@ const PluginCard = React.memo(
                 text={
                   plugin.status === "broken"
                     ? "Install Anyway"
-                    : "Install with Warning"
+                    : "Install Anyway"
                 }
                 variant="primary"
                 onPress={() => {
@@ -243,24 +239,11 @@ const PluginCard = React.memo(
 
       if (plugin.sourceUrl) {
         actions.push({
-          label: "Open Source URL",
+          label: "Copy Source URL",
           icon: findAssetId("img_account_sync_github_light"),
           onPress: () => {
-            if (plugin.sourceUrl) {
-              try {
-                Linking.openURL(plugin.sourceUrl);
-                showToast(
-                  "Opening source URL...",
-                  findAssetId("ExternalLinkIcon"),
-                );
-              } catch (e) {
-                clipboard.setString(plugin.sourceUrl);
-                showToast(
-                  "Could not open URL, copied to clipboard",
-                  findAssetId("LinkIcon"),
-                );
-              }
-            }
+            clipboard.setString(plugin.sourceUrl);
+            showToast("Copied source URL", findAssetId("CopyIcon"));
           },
         });
       }
@@ -366,6 +349,35 @@ const PluginCard = React.memo(
               alignItems: "flex-start",
             }}
           >
+            {(plugin.status === "broken" || plugin.status === "warning") && (
+              <View
+                style={{
+                  width: 16,
+                  marginRight: 21,
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  paddingTop: 6,
+                }}
+              >
+                <IconButton
+                  size="sm"
+                  variant="tertiary"
+                  icon={findAssetId(
+                    plugin.status === "broken"
+                      ? "CircleXIcon-primary"
+                      : "WarningIcon",
+                  )}
+                  disabled={true}
+                  style={{
+                    width: 18,
+                    height: 18,
+                    opacity: 1,
+                    tintColor:
+                      plugin.status === "broken" ? "#EF4444" : "#F59E0B",
+                  }}
+                />
+              </View>
+            )}
             <View style={{ flexShrink: 1, flex: 1 }}>
               <Text numberOfLines={2} variant="heading-lg/semibold">
                 {plugin.name}
@@ -376,11 +388,6 @@ const PluginCard = React.memo(
               {plugin.repoName && (
                 <Text variant="text-sm/medium" color="text-muted">
                   from {plugin.repoName}
-                </Text>
-              )}
-              {statusText && (
-                <Text variant="text-md/semibold" style={{ color: statusColor }}>
-                  Status: {statusText}
                 </Text>
               )}
             </View>
@@ -418,24 +425,6 @@ const PluginCard = React.memo(
           <Text variant="text-md/medium" numberOfLines={3}>
             {plugin.description}
           </Text>
-          {statusMessage && (
-            <View
-              style={{
-                padding: 8,
-                backgroundColor:
-                  plugin.status === "broken"
-                    ? "rgba(239, 68, 68, 0.1)"
-                    : "rgba(245, 158, 11, 0.1)",
-                borderRadius: 6,
-                borderLeftWidth: 3,
-                borderLeftColor: statusColor,
-              }}
-            >
-              <Text variant="text-sm/medium" style={{ color: statusColor }}>
-                {plugin.status === "broken" ? "❌" : "⚠️"} {statusMessage}
-              </Text>
-            </View>
-          )}
         </Stack>
       </Card>
     );
@@ -806,12 +795,13 @@ export default function PluginBrowserPage() {
             <Search
               placeholder="Search plugins..."
               onChangeText={setSearchQuery}
+              isRound={true}
             />
           </View>
           <IconButton
             size="sm"
             variant="secondary"
-            icon={findAssetId("img_help_icon")}
+            icon={findAssetId("MoreVerticalIcon")}
             onPress={openSortSheet}
           />
         </Stack>
