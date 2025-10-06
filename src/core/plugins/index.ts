@@ -21,6 +21,10 @@ export const getCorePlugins = (): Record<string, CorePlugin> => ({
     "bunny.plugins-list": {
         default: pluginsList,
         preenabled: true
+    },
+    "bunny.theme-browser": {
+        default: themeBrowser,
+        preenabled: true
     }
 });
 
