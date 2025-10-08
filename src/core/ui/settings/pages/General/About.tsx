@@ -14,7 +14,7 @@ export default function About() {
     const versions = [
         {
             label: Strings.BUNNY,
-            version: `1.4.0 DEV ${debugInfo.bunny.version}`,
+            version: `1.4.0-2 DEV ${debugInfo.bunny.version}`,
             icon: { uri: PyoncordIcon },
         },
         {
