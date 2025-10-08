@@ -6,7 +6,7 @@ on:
 jobs:
     release:
         name: Release
-        runs-on: [self-hosted, ubuntu-venbuilder]
+        runs-on: ubuntu-latest
         permissions:
             contents: write
 
@@ -38,6 +38,7 @@ jobs:
 
           - name: Push builds
             run: |
+                rm -rf $GITHUB_WORKSPACE/builds/
                 mkdir $GITHUB_WORKSPACE/builds
                 rm $GITHUB_WORKSPACE/builds/* || true
                 cp -r dist/* $GITHUB_WORKSPACE/builds || true
