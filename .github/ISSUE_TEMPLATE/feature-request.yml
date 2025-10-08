@@ -12,7 +12,7 @@ body:
 
         - **Do not submit a duplicate feature request**: Search for existing feature requests [here](https://github.com/revenge-mod/revenge-bundle/issues?q=label%3A%22Feature+request%22).
         - **Review the contribution guidelines**: Make sure your feature request adheres to it. You can find the guidelines [here](https://github.com/revenge-mod/revenge-bundle/blob/main/CONTRIBUTING.md).
-        - **Do not use the issue page for support**: If you need help or have questions, join us on [Discord](https://discord.gg/ddcQf3s2Uq).
+        - **Do not use the issue page for support**: If you need help or have questions, join us on [Discord](https://discord.gg/EfGzRTnwA).
   - type: textarea
     attributes:
       label: Feature description
