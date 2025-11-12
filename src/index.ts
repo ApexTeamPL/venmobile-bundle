@@ -42,7 +42,7 @@ export default async () => {
     // Once done, load Vendetta plugins
     VdPluginManager.initPlugins()
         .then(u => lib.unload.push(u))
-        .catch(() => alert("Failed to initialize Vendetta plugins"));
+        .catch(() => alert("FATAL: Vencore loaded but we failed to initialize Vendetta plugins. Bailing out, you are on your own. Good luck."));
 
     // And then, load Bunny plugins
     initPlugins();

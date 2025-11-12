@@ -126,7 +126,7 @@ export const initVendettaObject = (): any => {
             }
         },
         constants: {
-            DISCORD_SERVER: "https://discord.gg/n9QQ4XhhJP",
+            DISCORD_SERVER: "https://discord.gg/VdrH9PNfTc",
             GITHUB: "https://github.com/vendetta-mod",
             PROXY_PREFIX: "https://vd-plugins.github.io/proxy",
             HTTP_REGEX: /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/,
