@@ -8,7 +8,7 @@ A client for Discord mobile, a continuation (and fork) of [Revenge Classic](http
 - **🔌 Plugins**: Extend Discord with custom features
 - **🎨 Themes & Fonts**: Customize Discord's appearance to your liking
 - **🧪 Experiments**: Try out Discord's new features before they're rolled out 
-- **🔌 Built in Plugin Browaer**: The easiest way to install custom plugins into your client
+- **🔌 Built in Plugin Browser**: The easiest way to install custom plugins into your client
 - **🌐 Vencore Proxy**: The first ever Proxy Service for discord mobile - bypass geographic restrictions and unlock full potential of Discord
 - **📌 Many versions supported**: Vencore supports versions from 292014 up to 299208!
 
