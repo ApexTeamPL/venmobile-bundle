@@ -1,4 +1,4 @@
-import patchErrorBoundary from "@core/debug/patches/patchErrorBoundary";
+// import patchErrorBoundary from "@core/debug/patches/patchErrorBoundary";
 import initFixes from "@core/fixes";
 import { initFetchI18nStrings } from "@core/i18n";
 import initSettings from "@core/ui/settings";
@@ -13,11 +13,13 @@ import { injectFluxInterceptor } from "@lib/api/flux";
 import { patchJsx } from "@lib/api/react/jsx";
 import { logger } from "@lib/utils/logger";
 import { patchSettings } from "@ui/settings";
+import { getDebugInfo } from "@lib/api/debug";
 
 import * as lib from "./lib";
 
 export default async () => {
     // Load everything in parallel
+
     await Promise.all([
         initThemes(),
         injectFluxInterceptor(),
@@ -29,8 +31,11 @@ export default async () => {
         initFetchI18nStrings(),
         initSettings(),
         initFixes(),
-        patchErrorBoundary(),
-        updatePlugins()
+//        patchErrorBoundary(),
+        updatePlugins(),
+        updateFonts(),
+        initPlugins(),
+        VdPluginManager.initPlugins(),
     ]).then(
         // Push them all to unloader
         u => u.forEach(f => f && lib.unload.push(f))
@@ -38,17 +43,6 @@ export default async () => {
 
     // Assign window object
     window.bunny = lib;
-
-    // Once done, load Vendetta plugins
-    VdPluginManager.initPlugins()
-        .then(u => lib.unload.push(u))
-        .catch(() => alert("FATAL: Vencore loaded but we failed to initialize Vendetta plugins. Bailing out, you are on your own. Good luck."));
-
-    // And then, load Bunny plugins
-    initPlugins();
-
-    // Update the fonts
-    updateFonts();
 
     // We good :)
     logger.log("Vencore is ready!");
